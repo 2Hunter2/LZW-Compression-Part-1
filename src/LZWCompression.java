@@ -3,11 +3,14 @@ import java.io.*;
 
 public class LZWCompression {
 	ArrayList<String> arr = new ArrayList<String>();
-	for (int k = 0; k < 256; k ++)
+	
+	public LZWCompression ()
+	{
+	for (int k = 0; k < 255; k ++)
 	{
 		arr.add ((char)k + "");
 		
 	}
-	
+	}
 	
 }
