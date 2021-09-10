@@ -34,6 +34,7 @@ public class LZWCompression{
 				fOutput.write (this.compress(str2));
 			}
 			reader.close();
+			
 			System.out.println("Correct!");
 			
 		}
@@ -63,16 +64,21 @@ public class LZWCompression{
 			
 			else
 			{
-				arrList.add((new Integer(hMap.get(s1)/256)).byteValue());
 				arrList.add((new Integer(hMap.get(s1)).byteValue()));
+				
+				arrList.add((new Integer(hMap.get(s1)/256)).byteValue());
+				
 				hMap.put(s1 + ch, hMap.size() + 1);
 				s1= "" + ch;
 			}
 		}
 		
-		if(s1 != ""){
-			arrList.add((new Integer(hMap.get(s1)/256)).byteValue());
+		if(s1 != "")
+		{
 			arrList.add((new Integer(hMap.get(s1)).byteValue()));
+			
+			arrList.add((new Integer(hMap.get(s1)/256)).byteValue());
+		
 		}
 		
 		byte[] arr = new byte[arrList.size()];
