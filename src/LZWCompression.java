@@ -14,7 +14,7 @@ public class LZWCompression{
 		}
 	}
 	
-	public void fileCompression (String str) throws IOException
+	public void compression (String str) throws IOException
 	{
 		BufferedReader reader = new BufferedReader(new FileReader(str));
 		File f = new File(str + "good");
