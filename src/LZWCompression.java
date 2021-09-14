@@ -17,14 +17,15 @@ public class LZWCompression{
 	public void compression (String str) throws IOException
 	{
 		BufferedReader reader = new BufferedReader(new FileReader(str));
-		File f = new File(str + "good");
+		File f = new File(str + "1");
 		
 		String str2 = "";
 		try
 		{
 			String str3 = reader.readLine();
 			
-			while(str3 != null){
+			while(str3 != null)
+			{
 				str2 = str2 + str3;
 				str3 = reader.readLine();
 			}
@@ -34,8 +35,6 @@ public class LZWCompression{
 				fOutput.write (this.compress(str2));
 			}
 			reader.close();
-			
-			System.out.println("Correct!");
 			
 		}
 		catch(FileNotFoundException exception)
