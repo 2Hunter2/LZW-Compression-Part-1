@@ -5,6 +5,7 @@ import java.nio.file.Files;
 
 public class LZWCompression{
 	HashMap<String,Integer> hMap = new HashMap<String,Integer>();
+	ArrayList<Byte> theArrList = new ArrayList<Byte>();
 	
 	public LZWCompression()
 	{
@@ -87,6 +88,62 @@ public class LZWCompression{
 		{
 			arr[k] = arrList.get(k);
 		}
+		
+		theArrList = arrList;
 		return(arr);
+	}
+	
+	public String decompress () throws Exception
+	{
+		ArrayList<Integer> compressed = new ArrayList<Integer>();
+		
+		for (int i = 0; i < theArrList.size(); i++)
+		{
+			compressed.add(theArrList.get(i).intValue());
+		}
+		
+		Map<Integer, String> dictionary = new HashMap<Integer, String>();
+		
+		int dictionarySize = 256;
+		
+		for (int i = 0; i < dictionarySize; i++)
+		{
+			Character theChar = (char)i;
+			String theString = "" + theChar;
+			dictionary.put(i, theString);
+		}
+		
+		int firstCompressedInt = compressed.get(0);
+		Character firstCompressedChar = (char)firstCompressedInt;
+		
+		compressed.remove(0);
+
+		String currentLetters = "" + firstCompressedChar;
+		
+		String output = currentLetters;
+		
+		for (int i = 0; i < compressed.size(); i++)
+		{
+			int letters = compressed.get(i);
+					
+			String dictionaryEntry;
+
+			if (dictionary.containsKey(letters))
+			{
+				dictionaryEntry = dictionary.get(letters);
+			}
+			else
+			{
+				dictionaryEntry = currentLetters + currentLetters.charAt(0);
+			}
+			
+			output = output + dictionaryEntry;
+			
+			dictionary.put(dictionarySize++, currentLetters + dictionaryEntry.charAt(0));
+			
+			currentLetters = dictionaryEntry;
+		}
+		
+		return (output);
 	}
 }
