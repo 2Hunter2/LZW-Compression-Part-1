@@ -9,18 +9,18 @@ public class Tester
 		LZWCompression compressor = new LZWCompression ();
 
 		
-		BufferedReader reader = new BufferedReader(new FileReader("lzw-file1.txt"));
+//		BufferedReader reader = new BufferedReader(new FileReader("lzw-file1.txt"));
+//		
+//		String str = null;
+//		
+//		while (reader.ready())
+//		{
+//			str = str + reader.read();
+//		}
+//		
+//		compressor.fileCompression (str);
+//		compressor.compress(str);
 		
-		String str = null;
-		
-		while (reader.ready())
-		{
-			str = str + reader.read();
-		}
-		
-		compressor.fileCompression (str);
-		compressor.compress(str);
-		
-		
+		System.out.println(compressor.decompress());
 	}
 }
